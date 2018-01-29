@@ -13,11 +13,11 @@
 	}],
 	"stages": [
 		{
-		"name": "defaultStage",
+		"name": "build",
 		"fetch_materials": true,
 		"jobs": [
 			{
-			"name": "defaultJob",
+			"name": "build",
 			"elastic_profile_id": "docker-maven",
 			"tasks": [
 				{
@@ -33,6 +33,46 @@
 				}
 			]
 			}
+
+		]
+		}
+		{
+		"name": "test",
+		"fetch_materials": true,
+		"jobs": [
+			{
+			"name": "unit_test",
+			"elastic_profile_id": "docker-maven",
+			"tasks": [
+				{
+					"type": "exec",
+					"on_cancel": null,
+					"command": "mvn",
+					"arguments": [
+						"clean",
+						"test"
+					],
+					"working_directory": null
+				}
+			]
+			}
+			{
+			"name": "integration_test",
+			"elastic_profile_id": "docker-maven",
+			"tasks": [
+				{
+					"type": "exec",
+					"on_cancel": null,
+					"command": "mvn",
+					"arguments": [
+						"clean",
+						"test"
+					],
+					"working_directory": null
+				}
+			]
+			}
+
 		]
 		}
 	]
