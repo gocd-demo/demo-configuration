@@ -3,6 +3,7 @@
   "enable_pipeline_locking": false,
   "name": "json_installers",
   "template": null,
+  "group": "Development",
 
   "materials": [
     {
@@ -17,7 +18,8 @@
         "branch": "master",
         "submodule_folder": null,
         "shallow_clone": false
-      }
+      },
+      "name", "mainGit"
     },
     {
       "type": "dependency",
