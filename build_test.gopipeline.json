@@ -11,13 +11,16 @@
 		"url": "https://github.com/gocd-demo/jy_main_repo.git",
 		"name": "mainGit"
 	}],
-	"stages": [{
+	"stages": [
+		{
 		"name": "defaultStage",
 		"fetch_materials": true,
-		"jobs": [{
+		"jobs": [
+			{
 			"name": "defaultJob",
 			"elastic_profile_id": "docker-maven",
-			"tasks": [{
+			"tasks": [
+				{
 					"type": "exec",
 					"on_cancel": null,
 					"command": "mvn",
@@ -28,8 +31,9 @@
 					],
 					"working_directory": null
 				}
-
 			]
-		}]
-	}]
+			}
+		]
+		}
+	]
 }
