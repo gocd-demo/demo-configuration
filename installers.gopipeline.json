@@ -28,7 +28,8 @@
         "stage": "test",
         "name": "build_and_test",
         "auto_update": true
-      }
+      },
+      "name": "build_pipeline"
     }
   ],
   "stages": [
