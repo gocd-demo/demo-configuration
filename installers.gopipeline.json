@@ -23,12 +23,10 @@
     },
     {
       "type": "dependency",
-      "attributes": {
-        "pipeline": "build_and_test",
-        "stage": "test",
-        "name": "build_and_test",
-        "auto_update": true
-      },
+      "pipeline": "build_and_test",
+      "stage": "test",
+      "name": "build_and_test",
+      "auto_update": true,
       "name": "build_pipeline"
     }
   ],
