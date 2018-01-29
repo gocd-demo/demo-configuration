@@ -4,7 +4,7 @@
   "enable_pipeline_locking": false,
   "name": "json_build_test",
   "template": null,
-  "group": "Development",
+  "group": "KenTest",
 
   "materials": [
     {
