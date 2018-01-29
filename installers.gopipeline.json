@@ -19,7 +19,7 @@
         "submodule_folder": null,
         "shallow_clone": false
       },
-      "name", "mainGit"
+      "name": "mainGit"
     },
     {
       "type": "dependency",
