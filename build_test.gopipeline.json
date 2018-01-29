@@ -1,0 +1,42 @@
+{
+  "format_version": 2,
+  "label_template": "${COUNT}",
+  "enable_pipeline_locking": false,
+  "name": "json_build_test",
+  "template": null,
+  "group": "Development",
+
+  "materials": [
+    {
+      "type": "git",
+      "url": "https://github.com/gocd-demo/jy_main_repo.git",
+      "name": "mainGit"
+    }
+  ],
+  "stages": [
+    {
+      "name": "defaultStage",
+      "fetch_materials": true,
+      "jobs": [
+        {
+          "name": "defaultJob",
+          "elastic_profile_id": "docker-maven",
+          "tasks": [
+            {
+              "type": "exec",
+              "on_cancel": null,
+              "command": "mvn",
+              "arguments": [
+                "clean",
+                "compile",
+                "-DskipTests"
+              ],
+              "working_directory": null
+            },
+
+          ]
+        }
+      ]
+    }
+  ]
+}
