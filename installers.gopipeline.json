@@ -1,5 +1,4 @@
 {
-  },
   "label_template": "${COUNT}",
   "enable_pipeline_locking": false,
   "name": "json_installers",
