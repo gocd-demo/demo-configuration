@@ -1,6 +1,6 @@
 {
 
-  "format_version": 2,
+  "format_version": 1,
   "label_template": "${COUNT}",
   "enable_pipeline_locking": false,
   "name": "json_installers",
