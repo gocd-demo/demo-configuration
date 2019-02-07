@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  acceptance_tests:
+  acceptance_tests_yaml:
     group: Development
     label_template: ${COUNT}
     lock_behavior: none

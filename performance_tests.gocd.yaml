@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  performance_tests:
+  performance_tests_yaml:
     group: QualityGates
     label_template: ${COUNT}
     lock_behavior: none

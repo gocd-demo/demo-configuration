@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  deploy_to_qa:
+  deploy_to_qa_yaml:
     group: QualityGates
     template: deploy_and_test
     label_template: ${COUNT}

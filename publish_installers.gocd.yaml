@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  publish_installers:
+  publish_installers_yaml:
     group: Development
     label_template: ${COUNT}
     lock_behavior: none

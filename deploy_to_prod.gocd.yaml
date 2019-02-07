@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  deploy_to_prod:
+  deploy_to_prod_yaml:
     group: Production
     template: deploy_and_test
     label_template: ${COUNT}
