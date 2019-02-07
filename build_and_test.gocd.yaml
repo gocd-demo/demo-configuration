@@ -1,0 +1,73 @@
+format_version: 3
+pipelines:
+  build_and_test:
+    group: Development
+    label_template: ${COUNT}
+    lock_behavior: none
+    materials:
+      git:
+        git: https://github.com/gocd-demo/jy_main_repo.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - build:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          build:
+            timeout: 0
+            elastic_profile_id: docker-maven
+            tasks:
+            - exec:
+                arguments:
+                - clean
+                command: mvn
+                run_if: passed
+            - exec:
+                arguments:
+                - compile
+                - -DskipTests
+                command: mvn
+                run_if: passed
+    - test:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          unit_test:
+            timeout: 0
+            elastic_profile_id: docker-maven
+            artifacts:
+            - test:
+                source: target/surefire-reports/
+                destination: testoutput
+            tasks:
+            - exec:
+                arguments:
+                - clean
+                - test
+                command: mvn
+                run_if: passed
+            - exec:
+                command: callme
+                run_if: failed
+          integration_test:
+            timeout: 0
+            elastic_profile_id: docker-maven
+            artifacts:
+            - test:
+                source: target/surefire-reports/
+                destination: testoutput
+            tasks:
+            - exec:
+                arguments:
+                - clean
+                - test
+                command: mvn
+                run_if: passed

@@ -1,0 +1,78 @@
+format_version: 3
+pipelines:
+  performance_tests:
+    group: QualityGates
+    label_template: ${COUNT}
+    lock_behavior: none
+    materials:
+      git:
+        git: https://github.com/gocd-demo/jy_performance.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        destination: performance
+      publish_installers:
+        pipeline: publish_installers
+        stage: defaultStage
+        name: publish_installers
+    stages:
+    - deploy:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          defaultJob:
+            timeout: 0
+            elastic_profile_id: docker-ruby
+            tasks:
+            - fetch:
+                is_file: false
+                source: distribution
+                destination: ''
+                pipeline: publish_installers
+                stage: defaultStage
+                job: defaultJob
+                artifact_origin: gocd
+                run_if: passed
+            - exec:
+                command: ./deploy.rb
+                working_directory: deployment_scripts
+                run_if: passed
+    - configure:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          defaultJob:
+            timeout: 0
+            elastic_profile_id: docker-ruby
+            tasks:
+            - exec:
+                command: ./configure.rb
+                working_directory: deployment_scripts
+                run_if: passed
+    - benchmark:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          defaultJob:
+            timeout: 0
+            tabs:
+              jmeter-report: reports/index.html
+            elastic_profile_id: docker-ruby
+            artifacts:
+            - build:
+                source: performance/reports
+                destination: ''
+            tasks:
+            - exec:
+                command: ./run_jmeter_tests.rb
+                working_directory: performance
+                run_if: passed

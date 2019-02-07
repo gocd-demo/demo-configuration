@@ -1,0 +1,52 @@
+format_version: 3
+pipelines:
+  publish_installers:
+    group: Development
+    label_template: ${COUNT}
+    lock_behavior: none
+    environment_variables:
+      demo-admin: ''
+    secure_variables:
+      db_pass: AES:WcsF6UED317vuqkRwX+uqA==:ZwHA1pAOOEtRnAQsAunU2Q==
+    materials:
+      git:
+        git: https://github.com/gocd-demo/jy_publish_installers.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+      regression_tests:
+        pipeline: regression_tests
+        stage: defaultStage
+        name: regression_tests
+      acceptance_tests:
+        pipeline: acceptance_tests
+        stage: defaultStage
+        name: acceptance_tests
+    stages:
+    - defaultStage:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+        jobs:
+          defaultJob:
+            timeout: 0
+            elastic_profile_id: docker-ruby
+            artifacts:
+            - build:
+                source: distribution
+                destination: ''
+            tasks:
+            - fetch:
+                is_file: false
+                source: distribution
+                destination: ''
+                pipeline: installers/regression_tests
+                stage: defaultStage
+                job: defaultJob
+                artifact_origin: gocd
+                run_if: passed
+            - exec:
+                command: ./publish_installers.rb
+                run_if: passed
