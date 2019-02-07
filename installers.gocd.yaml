@@ -11,7 +11,7 @@ pipelines:
         auto_update: true
         branch: master
       build_and_test:
-        pipeline: build_and_test
+        pipeline: build_and_test_yaml
         stage: test
         name: build_and_test
     stages:

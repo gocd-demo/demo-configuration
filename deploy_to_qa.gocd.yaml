@@ -13,7 +13,7 @@ pipelines:
         branch: master
         destination: functional_tests
       publish_installers:
-        pipeline: publish_installers
+        pipeline: publish_installers_yaml
         stage: defaultStage
         name: publish_installers
     parameters:

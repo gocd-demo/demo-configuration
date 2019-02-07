@@ -12,7 +12,7 @@ pipelines:
         branch: master
         destination: performance
       publish_installers:
-        pipeline: publish_installers
+        pipeline: publish_installers_yaml
         stage: defaultStage
         name: publish_installers
     stages:

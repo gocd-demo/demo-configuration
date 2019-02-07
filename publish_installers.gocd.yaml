@@ -15,11 +15,11 @@ pipelines:
         auto_update: true
         branch: master
       regression_tests:
-        pipeline: regression_tests
+        pipeline: regression_tests_yaml
         stage: defaultStage
         name: regression_tests
       acceptance_tests:
-        pipeline: acceptance_tests
+        pipeline: acceptance_tests_yaml
         stage: defaultStage
         name: acceptance_tests
     stages:

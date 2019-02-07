@@ -21,11 +21,11 @@ pipelines:
         destination: functional_tests
         name: functional_tests
       qa_dependency:
-        pipeline: deploy_to_qa
+        pipeline: deploy_to_qa_yaml
         stage: run_user_tests
         name: qa_dependency
       performance_tests_dependency:
-        pipeline: performance_tests
+        pipeline: performance_tests_yaml
         stage: benchmark
         name: performance_tests_dependency
     parameters:
